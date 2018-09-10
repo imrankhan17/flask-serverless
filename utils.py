@@ -1,3 +1,7 @@
+import os
+import pymysql.cursors
+
+
 def calculate_roots(a, b, c):
     a, b, c = map(float, (a, b, c))
 
@@ -15,3 +19,14 @@ def calculate_roots(a, b, c):
         return str(x1)
 
     return '{},{}'.format(x1, x2)
+
+
+def save_to_db(request):
+    db = pymysql.connect(host=os.environ['DB_NAME'], user=os.environ['DB_USER'],
+                         passwd=os.environ['DB_PASS'], port=3306)
+    cur = db.cursor()
+    cur.execute('INSERT INTO logs.inputs (cookie, referrer, user_agent, a, b, c) VALUES (%s, %s, %s, %s, %s, %s);',
+                (request.cookies['session'], request.referrer, request.user_agent.string, request.args['a'],
+                 request.args['b'], request.args['c']))
+    db.commit()
+    db.close()
