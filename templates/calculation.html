@@ -1,6 +1,11 @@
+<a>Solve <img src="http://latex.codecogs.com/svg.latex?ax^2+bx+c=0" border="0"/></a>
+<br><br>
 <form action="{{ url_for('calculate') }}" method="post">
+    <a>a=</a>
     <input type="text" name="a">
+    <a>b=</a>
     <input type="text" name="b">
+    <a>c=</a>
     <input type="text" name="c">
     {{ form.csrf_token }}
     <input type="submit">
