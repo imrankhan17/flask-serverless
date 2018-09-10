@@ -1,29 +1,22 @@
-from flask import Flask, request
+from flask import Flask, request, render_template, redirect
+
+from form import CoefficientsForm
+from utils import calculate_roots
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '123'
 
 
-def calculate_roots(a, b, c):
-    a, b, c = map(float, (a, b, c))
-
-    if a == 0:
-        return str(-c / b)
-
-    discriminant = b**2 - 4 * a * c
-    if discriminant < 0:
-        return 'No real roots'
-
-    x1 = (-b + discriminant ** 0.5) / (2 * a)
-    x2 = (-b - discriminant ** 0.5) / (2 * a)
-
-    if x1 == x2:
-        return str(x1)
-
-    return '{},{}'.format(x1, x2)
+@app.route('/', methods=['GET', 'POST'])
+def calculate():
+    form = CoefficientsForm()
+    if form.validate_on_submit():
+        return redirect('/result?a={}&b={}&c={}'.format(form.a.data, form.b.data, form.c.data))
+    return render_template('calculation.html', form=form)
 
 
-@app.route('/')
-def quadratic():
+@app.route('/result')
+def result():
     return calculate_roots(a=request.args['a'], b=request.args['b'], c=request.args['c'])
 
 

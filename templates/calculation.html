@@ -1,0 +1,7 @@
+<form action="{{ url_for('calculate') }}" method="post">
+    <input type="text" name="a">
+    <input type="text" name="b">
+    <input type="text" name="c">
+    {{ form.csrf_token }}
+    <input type="submit">
+</form>
