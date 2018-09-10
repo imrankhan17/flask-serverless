@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, url_for
 
 from form import CoefficientsForm
 from utils import calculate_roots
@@ -11,7 +11,7 @@ app.config['SECRET_KEY'] = '123'
 def calculate():
     form = CoefficientsForm()
     if form.validate_on_submit():
-        return redirect('/result?a={}&b={}&c={}'.format(form.a.data, form.b.data, form.c.data))
+        return redirect(url_for('result', a=form.a.data, b=form.b.data, c=form.c.data))
     return render_template('calculation.html', form=form)
 
 
