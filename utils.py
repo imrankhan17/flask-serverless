@@ -3,6 +3,13 @@ import pymysql.cursors
 
 
 def calculate_roots(a, b, c):
+    """
+    Calculates roots of quadratic equation of form `ax^2 +bx + c = 0`
+    :param a: coefficient of x^2
+    :param b: coefficient of x
+    :param c: constant
+    :return: roots if they exist
+    """
     a, b, c = map(float, (a, b, c))
 
     if a == 0:
