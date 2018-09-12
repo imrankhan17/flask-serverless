@@ -12,7 +12,7 @@ def calculate():
     form = CoefficientsForm()
     if form.validate_on_submit():
         return redirect(url_for('result', a=form.data['a'], b=form.data['b'], c=form.data['c']))
-    return render_template('calculation.html', form=form)
+    return render_template('form.html', form=form)
 
 
 @app.route('/result')
@@ -22,4 +22,4 @@ def result():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
