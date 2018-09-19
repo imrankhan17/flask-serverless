@@ -32,7 +32,7 @@ def save_to_db(request):
     db = pymysql.connect(host=os.environ['DB_NAME'], user=os.environ['DB_USER'],
                          passwd=os.environ['DB_PASS'], port=3306)
     cur = db.cursor()
-    cur.execute('INSERT INTO logs.inputs (cookie, referrer, user_agent, a, b, c) VALUES (%s, %s, %s, %s, %s, %s);',
+    cur.execute('INSERT INTO logs.quadratic (cookie, referrer, user_agent, a, b, c) VALUES (%s, %s, %s, %s, %s, %s);',
                 (request.cookies['session'], request.referrer, request.user_agent.string, request.args['a'],
                  request.args['b'], request.args['c']))
     db.commit()
