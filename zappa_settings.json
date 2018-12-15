@@ -5,11 +5,6 @@
         "profile_name": "default",
         "project_name": "flask-app",
         "runtime": "python3.6",
-        "s3_bucket": "zappa-fer0nr85g",
-        "timeout_seconds": 10,
-        "vpc_config": {
-            "SubnetIds": ["subnet-abd456c2", "subnet-991a09d4", "subnet-5be62b21"],
-            "SecurityGroupIds": ["sg-0ee7e3f49dbcc22dd"]
-        }
+        "s3_bucket": "zappa-lpq3pda83"
     }
 }
